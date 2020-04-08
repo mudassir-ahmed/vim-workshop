@@ -1,7 +1,9 @@
 # 03: basics
 
 ## Vim can teach you the basics also
-Type `vimtutor` in your terminal.
+Type `vimtutor` in your terminal or `:h`. The documentation
+is a good place to find out things vim can do that you
+didn't know it could.
 
 ## But let's demo
 
