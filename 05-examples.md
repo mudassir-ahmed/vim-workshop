@@ -18,3 +18,13 @@ usign `:r !echo "1+2" | bc`.
 
 ## Launch file in vim with read only mode
 `vim -MR filename.extension`
+
+## Line Movement
+
+## Macros
+
+## Marks
+
+## Find
+
+## Search and replace
