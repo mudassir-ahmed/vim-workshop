@@ -28,3 +28,6 @@ usign `:r !echo "1+2" | bc`.
 ## Find
 
 ## Search and replace
+
+## Jump to line 12 column 5
+`:call cursor(12,5)` or `:12` then hit enter followed by `5l`.
