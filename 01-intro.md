@@ -33,4 +33,4 @@ and forth opened tabs respectively.
 - And using `:prev` and `:next` to navigate files
 opened on startup.
 - See opened files using `:args`
-
+- Quick find using `:find name_of_file`
