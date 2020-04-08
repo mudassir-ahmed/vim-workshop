@@ -16,3 +16,5 @@ in `1+2` and hit enter.
 `:r !ls`. We could have ran the calculator example
 usign `:r !echo "1+2" | bc`.
 
+## Launch file in vim with read only mode
+`vim -MR filename.extension`
