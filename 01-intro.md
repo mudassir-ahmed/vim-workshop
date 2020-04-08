@@ -34,3 +34,4 @@ and forth opened tabs respectively.
 opened on startup.
 - See opened files using `:args`
 - Quick find using `:find file_name` or `:b file_name_substring`
+- I'm using `:Goyo` to display the text nicely (plugin) 
