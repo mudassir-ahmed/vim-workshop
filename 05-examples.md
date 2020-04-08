@@ -39,7 +39,7 @@ Just type `:set path?`. Pro tip: get vim to search subfolders by using `;set pat
 ## Insert a path of a file in insert mode 
 In insert mode use `^x` followed by `^f`. Try this: in insert mode 
 type `/` then hit `^x` followed by `^f`. To cycle through choices
-using `^f` or `^p` and `^n`.
+using `^f` or `^p` and `^n`. Learn more about useage with `:h ins-completion`.
 
 ## Jump to any open buffer (file)
 Try `:b intro`. Pro tip: see opened buffers using `:ls`.
