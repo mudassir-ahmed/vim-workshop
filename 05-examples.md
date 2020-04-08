@@ -31,3 +31,7 @@ usign `:r !echo "1+2" | bc`.
 
 ## Jump to line 12 column 5
 `:call cursor(12,5)` or `:12` then hit enter followed by `5l`.
+
+## Check your vim path and find files
+This is where vim will search when using `:find file_name`. 
+Just type `:set path?`. Pro tip: get vim to search subfolders by using `;set path+=**`.
