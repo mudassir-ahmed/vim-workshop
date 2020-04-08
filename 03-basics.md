@@ -8,5 +8,8 @@ didn't know it could.
 ## But let's demo
 
 
-# I told you I would teach you over 10,000 commands
-[operator][count][motion]
+## I told you I would teach you over 10,000 commands
+Vim is like a language. 
+Operator/action followed by a motion or text object just 
+like a sentence. Pro tip: always try to return to normal 
+mode (hence the name).
