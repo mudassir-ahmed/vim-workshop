@@ -35,3 +35,7 @@ usign `:r !echo "1+2" | bc`.
 ## Check your vim path and find files
 This is where vim will search when using `:find file_name`. 
 Just type `:set path?`. Pro tip: get vim to search subfolders by using `;set path+=**`.
+
+
+## Jump to any open buffer (file)
+Try `:b intro`. Pro tip: see opened buffers using `:ls`.
