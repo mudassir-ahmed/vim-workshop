@@ -26,7 +26,7 @@
       v-on:pause="audioPauseHandler()"
       v-on:play="audioPlayHandler()"
       v-on:timeupdate="audioTimeUpdateHandler()"
-      preload
+      preload="auto"
     >
       > You're browser does not support the audio element - please update you're
       browser.
