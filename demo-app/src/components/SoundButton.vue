@@ -1,18 +1,21 @@
 <template>
-  <div :class="playing ? 'sound sound--playing' : 'sound'">
-    <a
-      href="#"
+  <div class="sound" :class="playing && 'sound--playing'">
+    <div
+      ref="emojiContainer"
+      class="sound__btn"
       @click.prevent="toggle()"
       @dblclick.prevent="resetPlayer()"
-      class="sound__btn"
+      v-on:mousemove="magneticEmoji"
+      v-on:mouseleave="magneticEmojiReset"
     >
       <div
-        href="#"
         class="sound__btn-progress"
         :style="`transform: translateX(${progress - 100}%);`"
       ></div>
-      <div class="sound__btn-emoji">{{ emoji }}</div>
-    </a>
+      <div class="sound__btn-emoji" :style="emojiStyles">
+        {{ emoji }}
+      </div>
+    </div>
     <span class="sound__name">{{ name }}</span>
     <!-- <span class="sound__downloads">{{ downloads }}</span> -->
     <!-- <span class="sound__author">Author/Credits</span> -->
@@ -20,7 +23,7 @@
       ref="audioPlayer"
       class="sound__audio"
       :src="audioFilePath"
-      v-on:pause="audioPausedHandler()"
+      v-on:pause="audioPauseHandler()"
       v-on:play="audioPlayHandler()"
       v-on:timeupdate="audioTimeUpdateHandler()"
       preload
@@ -32,6 +35,10 @@
 </template>
 
 <script>
+import gsap from 'gsap';
+import TweenLite from 'gsap/all';
+gsap.registerPlugin(TweenLite);
+
 /**
  * @docs https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
  */
@@ -41,6 +48,10 @@ export default {
     return {
       playing: false,
       progress: 0,
+      x: 0,
+      y: 0,
+      tweenedNumberX: 0,
+      tweenedNumberY: 0,
     };
   },
   computed: {
@@ -52,6 +63,10 @@ export default {
         // Todo: maybe add a style state to show user audio wasn't found
         return '';
       }
+    },
+    emojiStyles() {
+      // TweenMax handles the animation bit by animating the number
+      return `transform: translate(${this.tweenedNumberX}px, ${this.tweenedNumberY}px);`;
     },
   },
   props: {
@@ -91,7 +106,7 @@ export default {
       el.pause();
       el.currentTime = 0;
     },
-    audioPausedHandler() {
+    audioPauseHandler() {
       this.playing = false;
     },
     audioPlayHandler() {
@@ -102,11 +117,53 @@ export default {
 
       this.progress = (el.currentTime / el.duration) * 100;
     },
+    magneticEmoji(event) {
+      // Makes the emoji act like it's attracted to the mouse cursor
+
+      const emojiContainer = this.$refs.emojiContainer;
+
+      const emojiCenterX =
+        emojiContainer.getBoundingClientRect().x +
+        emojiContainer.getBoundingClientRect().width / 2;
+
+      const emojiCenterY =
+        emojiContainer.getBoundingClientRect().y +
+        emojiContainer.getBoundingClientRect().height / 2;
+
+      const STRENGTH = 0.4;
+
+      this.x = (event.clientX - emojiCenterX) * STRENGTH;
+      this.y = (event.clientY - emojiCenterY) * STRENGTH;
+    },
+    magneticEmojiReset() {
+      this.x = this.y = 0; // animate back to the start
+    },
+  },
+
+  watch: {
+    x(newValue) {
+      // newValue is passed by vue
+      TweenLite.to(this.$data, 0.5, { tweenedNumberX: newValue });
+    },
+    y(newValue) {
+      // newValue is passed by vue
+      TweenLite.to(this.$data, 0.5, { tweenedNumberY: newValue });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+// Disable selection
+@mixin disable-selection {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
 .sound {
   text-align: center;
   display: inline-block;
@@ -163,8 +220,10 @@ export default {
     }
 
     &-emoji {
+      @include disable-selection; // stops emoji being highlighted on double clicks
       display: block;
       font-size: 30px;
+      cursor: default; // otherwise shows text cursor
     }
 
     &-progress {
