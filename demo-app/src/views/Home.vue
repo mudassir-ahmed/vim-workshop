@@ -6,6 +6,7 @@
       Double click to reset the player.
     </p>
     <div class="sounds">
+      <!-- TODO: data should be moved to JSON -->
       <SoundButton
         name="They ask you how you are and you just have to say that you're fine"
         :downloads="2154"
