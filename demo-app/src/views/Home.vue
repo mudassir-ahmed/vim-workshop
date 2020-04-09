@@ -2,8 +2,8 @@
   <div class="home">
     <h1>Sounds for creatives</h1>
     <p class="lead">
-      Test the sounds. Click to toggle play state. Double click to reset the
-      player.
+      The most popular sounds on the internet. Click to toggle play state.
+      Double click to reset the player.
     </p>
     <div class="sounds">
       <SoundButton

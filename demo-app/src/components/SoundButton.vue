@@ -1,16 +1,18 @@
 <template>
-  <div
-    :class="playing ? 'sound sound--playing' : 'sound'"
-    @click="toggle()"
-    @dblclick="resetPlayer()"
-  >
-    <button class="sound__btn">
+  <div :class="playing ? 'sound sound--playing' : 'sound'">
+    <a
+      href="#"
+      @click.prevent="toggle()"
+      @dblclick.prevent="resetPlayer()"
+      class="sound__btn"
+    >
       <div
+        href="#"
         class="sound__btn-progress"
         :style="`transform: translateX(${progress - 100}%);`"
       ></div>
-      {{ emoji }}
-    </button>
+      <div class="sound__btn-emoji">{{ emoji }}</div>
+    </a>
     <span class="sound__name">{{ name }}</span>
     <!-- <span class="sound__downloads">{{ downloads }}</span> -->
     <!-- <span class="sound__author">Author/Credits</span> -->
@@ -113,35 +115,56 @@ export default {
 
   &--playing {
     .sound__btn {
-      background-color: rgba(255, 152, 0, 0.3);
+      &,
+      &:visited,
+      &:link {
+        background-color: rgba(255, 152, 0, 0.3);
+      }
     }
   }
 
   &__btn {
-    // Remove default button styles
-    border: none;
-    outline: none;
+    &,
+    &:visited,
+    &:link {
+      // Remove default styles
+      border: none;
+      outline: none;
+      text-decoration: none;
 
-    // Make it fancy
-    border-radius: 40%;
-    display: inline-block;
-    font-size: 30px;
-    padding: 45px;
-    margin: auto;
-    background-color: rgba(192, 214, 255, 0.5);
-    // Todo: make it a better bounce animation
-    transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1),
-      background-color 0.2s ease-out;
+      // Make it fancy
+      border-radius: 40%;
+      display: block;
+      font-size: 30px;
+      width: 128px;
+      height: 128px;
+      margin: auto;
+      background-color: rgba(192, 214, 255, 0.5);
+      // Todo: make it a better bounce animation
+      transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1),
+        background-color 0.2s ease-out;
 
-    // Optimise the scale animation
-    will-change: transform;
+      // Optimise the scale animation
+      will-change: transform;
 
-    // Allows us to make the progress bar
-    position: relative;
-    overflow: hidden;
+      // Allows us to make the progress bar
+      position: relative;
+      overflow: hidden;
+
+      // Align emoji center
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
     &:active {
       transform: scale(0.9);
+    }
+
+    &-emoji {
+      display: block;
+      font-size: 30px;
     }
 
     &-progress {
