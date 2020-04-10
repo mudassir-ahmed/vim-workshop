@@ -26,7 +26,7 @@ export default {
   font-family: inherit;
 
   // Default transition for everything - looks cool when switching dark mode
-  transition: 0.1s ease-out;
+  transition: 0.02s, background 0.4s ease;
 }
 
 html,
