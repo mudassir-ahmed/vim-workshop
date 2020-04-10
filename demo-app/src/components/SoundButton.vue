@@ -207,7 +207,7 @@ export default {
         &,
         &:visited,
         &:link {
-          background-color: green;
+          background-color: rgba($color: #ffffff, $alpha: 0.02);
         }
       }
     }
