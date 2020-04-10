@@ -1,5 +1,8 @@
 <template>
-  <div class="sound" :class="playing && 'sound--playing'">
+  <div
+    class="sound"
+    :class="[playing ? 'sound--playing' : '', darkMode ? 'sound--dark' : '']"
+  >
     <div
       ref="emojiContainer"
       class="sound__btn"
@@ -12,9 +15,7 @@
         class="sound__btn-progress"
         :style="`transform: translateX(${progress - 100}%);`"
       ></div>
-      <div class="sound__btn-emoji" :style="emojiStyles">
-        {{ emoji }}
-      </div>
+      <div class="sound__btn-emoji" :style="emojiStyles">{{ emoji }}</div>
     </div>
     <span class="sound__name">{{ name }}</span>
     <!-- <span class="sound__downloads">{{ downloads }}</span> -->
@@ -39,6 +40,8 @@ import gsap from 'gsap';
 import TweenLite from 'gsap/all';
 gsap.registerPlugin(TweenLite);
 
+import { mapGetters } from 'vuex';
+
 /**
  * @docs https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
  */
@@ -55,6 +58,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['darkMode']),
     audioFilePath() {
       try {
         return require(`@/assets/sounds/${this.soundFile}`);
@@ -170,12 +174,41 @@ export default {
   vertical-align: top;
   margin: 20px;
 
+  // Default and playing colors
   &--playing {
     .sound__btn {
       &,
       &:visited,
       &:link {
         background-color: rgba(255, 152, 0, 0.3);
+      }
+    }
+  }
+
+  // Dark mode default colors
+  &--dark {
+    .sound__btn {
+      &,
+      &:visited,
+      &:link {
+        background-color: rgba($color: #000000, $alpha: 0.1);
+      }
+
+      &-progress {
+        background-color: rgba($color: #000000, $alpha: 0.2);
+      }
+    }
+  }
+
+  // Dark mode and playing colors
+  &--dark {
+    &.sound--playing {
+      .sound__btn {
+        &,
+        &:visited,
+        &:link {
+          background-color: green;
+        }
       }
     }
   }
@@ -232,8 +265,7 @@ export default {
       left: 0;
       height: 100%;
       width: 100%;
-      background-color: #000000;
-      opacity: 0.05;
+      background-color: rgba($color: #000000, $alpha: 0.05);
 
       // Getting progress bar animation to appear smooth
       will-change: transform;

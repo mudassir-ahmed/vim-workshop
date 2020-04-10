@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <ToggleDarkModeButton />
     <h1>Sounds for creatives</h1>
     <p class="lead">
       The most popular sounds on the internet. Click to toggle play state.
@@ -73,10 +74,12 @@
 
 <script>
 import SoundButton from '../components/SoundButton';
+import ToggleDarkModeButton from '../components/ToggleDarkModeButton';
 
 export default {
   components: {
     SoundButton,
+    ToggleDarkModeButton,
   },
 };
 </script>

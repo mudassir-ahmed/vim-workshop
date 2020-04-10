@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app" :class="darkMode && 'app--dark'">
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,12 +8,25 @@
   </div>
 </template>
 
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters(['darkMode']),
+  },
+};
+</script>
+
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
   box-sizing: border-box;
   font-family: inherit;
+
+  // Default transition for everything - looks cool when switching dark mode
+  transition: 0.1s ease-out;
 }
 
 html,
@@ -30,11 +43,16 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
-#app {
+.app {
   text-align: center;
   width: 100%;
   height: 100%;
   padding: 30px; // safe zone padding
+
+  &--dark {
+    background-color: #101010;
+    color: white;
+  }
 }
 
 #nav {
