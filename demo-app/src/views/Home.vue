@@ -47,7 +47,7 @@
       <SoundButton
         name="Don't Rush by Young T & Bugsey ft. Headie One - GRM Daily"
         :downloads="52038"
-        emoji="💸‍"
+        emoji="💸"
         sound-file="dont_rush_grm_daily.mp3"
       />
       <SoundButton
