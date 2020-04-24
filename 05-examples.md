@@ -49,7 +49,13 @@ In normal mode hit `/your_search_query`.
 ## Check your vim path and find files
 
 This is where vim will search when using `:find file_name`.
-Just type `:set path?`. Pro tip: get vim to search subfolders by using `;set path+=**`.
+Just type `:set path?`. Pro tip: get vim to search subfolders by using `:set path+=**`.
+
+## Run external command on visual selection
+
+In visual mode select text and hit `!` followed by the external command you
+want to run on the selection. Some cool external commands are `figlet`,
+`column`, `cowsay` in addition to others.
 
 ## Insert a path of a file in insert mode
 
