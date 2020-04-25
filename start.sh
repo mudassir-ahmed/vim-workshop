@@ -14,7 +14,7 @@ test -z "$(which slop)"      && exit 1 # make sure slop is installed
 # Begin screenkey with configs - slop will ask you to select the geometry
 # i.e. where the logged keys appear/bounded on screen
 GEOMETRY=slop=$(slop -f "%g") || exit 1
-screenkey -s=large -p=fixed --no-systray --key-mode=translated -f="Source Code Pro for Powerline Semibold" --no-whitespace --opacity=0.6 --bg-color=#000000 --geometry=`echo $GEOMETRY | cut -c 6-`
+screenkey -s=large -p=fixed --no-systray --key-mode=translated -f="Source Code Pro for Powerline Semibold" --no-whitespace --opacity=0.6 --bg-color=#000000 --geometry=`echo $GEOMETRY | cut -c 6-` &
 
 # Create alias to stop screenkey
 alias stopscreenkey="pkill -f screenkey"
